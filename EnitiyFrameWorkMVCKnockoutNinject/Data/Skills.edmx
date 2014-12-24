@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SkillsDbModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="SkillsDbModelStoreContainer">
+          <EntitySet Name="Member" EntityType="SkillsDbModel.Store.Member" store:Type="Tables" store:Schema="dbo" store:Name="Member">
+            <DefiningQuery>SELECT 
+      [Member].[Member_ID] AS [Member_ID], 
+      [Member].[First_Name] AS [First_Name], 
+      [Member].[Last_Name] AS [Last_Name], 
+      [Member].[User_Name] AS [User_Name], 
+      [Member].[Date_Joined] AS [Date_Joined], 
+      [Member].[Date_Of_Birth] AS [Date_Of_Birth], 
+      [Member].[Phone_Number] AS [Phone_Number]
+      FROM [dbo].[Member] AS [Member]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="skill" EntityType="SkillsDbModel.Store.skill" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'SkillsDb.dbo.Member' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="Member">
+          <Key>
+            <PropertyRef Name="Member_ID" />
+            <PropertyRef Name="First_Name" />
+            <PropertyRef Name="Last_Name" />
+            <PropertyRef Name="User_Name" />
+            <PropertyRef Name="Date_Joined" />
+            <PropertyRef Name="Date_Of_Birth" />
+          </Key>
+          <Property Name="Member_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="First_Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Last_Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="User_Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Date_Joined" Type="datetime" Nullable="false" />
+          <Property Name="Date_Of_Birth" Type="datetime" Nullable="false" />
+          <Property Name="Phone_Number" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="skill">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="skill_name" Type="varchar(max)" />
+        </EntityType>
+        <Function Name="sp_skill_create" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="skill_name" Type="varchar(max)" Mode="In" />
+          <Parameter Name="ID" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="sp_skill_delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="skill_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_skill_read" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="skill_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_skill_update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="skill_id" Type="int" Mode="In" />
+          <Parameter Name="skill_name" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_skills_read_all" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SkillsDbModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="SkillsDbEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Members" EntityType="SkillsDbModel.Member" />
+          <EntitySet Name="skills" EntityType="SkillsDbModel.skill" />
+          <FunctionImport Name="sp_skill_create">
+            <Parameter Name="skill_name" Mode="In" Type="String" />
+            <Parameter Name="ID" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_skill_delete">
+          <Parameter Name="skill_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_skill_read" ReturnType="Collection(SkillsDbModel.sp_skill_read_Result)">
+          <Parameter Name="skill_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_skill_update">
+            <Parameter Name="skill_id" Mode="In" Type="Int32" />
+            <Parameter Name="skill_name" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_skills_read_all" ReturnType="Collection(SkillsDbModel.sp_skills_read_all_Result)" />
+        </EntityContainer>
+        <EntityType Name="Member">
+          <Key>
+            <PropertyRef Name="Member_ID" />
+            <PropertyRef Name="First_Name" />
+            <PropertyRef Name="Last_Name" />
+            <PropertyRef Name="User_Name" />
+            <PropertyRef Name="Date_Joined" />
+            <PropertyRef Name="Date_Of_Birth" />
+          </Key>
+          <Property Name="Member_ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="First_Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Last_Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="User_Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Date_Joined" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Date_Of_Birth" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Phone_Number" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="skill">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="skill_name" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <ComplexType Name="sp_skill_read_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="skill_name" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_skills_read_all_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="skill_name" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SkillsDbModelStoreContainer" CdmEntityContainer="SkillsDbEntities">
+          <EntitySetMapping Name="Members">
+            <EntityTypeMapping TypeName="SkillsDbModel.Member">
+              <MappingFragment StoreEntitySet="Member">
+                <ScalarProperty Name="Member_ID" ColumnName="Member_ID" />
+                <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+                <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+                <ScalarProperty Name="User_Name" ColumnName="User_Name" />
+                <ScalarProperty Name="Date_Joined" ColumnName="Date_Joined" />
+                <ScalarProperty Name="Date_Of_Birth" ColumnName="Date_Of_Birth" />
+                <ScalarProperty Name="Phone_Number" ColumnName="Phone_Number" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="skills">
+            <EntityTypeMapping TypeName="SkillsDbModel.skill">
+              <MappingFragment StoreEntitySet="skill">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="skill_name" ColumnName="skill_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_skill_create" FunctionName="SkillsDbModel.Store.sp_skill_create" />
+          <FunctionImportMapping FunctionImportName="sp_skill_delete" FunctionName="SkillsDbModel.Store.sp_skill_delete" />
+          <FunctionImportMapping FunctionImportName="sp_skill_read" FunctionName="SkillsDbModel.Store.sp_skill_read">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SkillsDbModel.sp_skill_read_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="skill_name" ColumnName="skill_name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_skill_update" FunctionName="SkillsDbModel.Store.sp_skill_update" />
+          <FunctionImportMapping FunctionImportName="sp_skills_read_all" FunctionName="SkillsDbModel.Store.sp_skills_read_all">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SkillsDbModel.sp_skills_read_all_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="skill_name" ColumnName="skill_name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

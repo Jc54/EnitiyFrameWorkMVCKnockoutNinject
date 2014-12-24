@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SkillsDbModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="SkillsDbEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Members" EntityType="SkillsDbModel.Member" />
+    <EntitySet Name="skills" EntityType="SkillsDbModel.skill" />
+    <FunctionImport Name="sp_skill_create">
+      <Parameter Name="skill_name" Mode="In" Type="String" />
+      <Parameter Name="ID" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_skill_delete">
+      <Parameter Name="skill_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_skill_read" ReturnType="Collection(SkillsDbModel.sp_skill_read_Result)">
+      <Parameter Name="skill_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_skill_update">
+      <Parameter Name="skill_id" Mode="In" Type="Int32" />
+      <Parameter Name="skill_name" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_skills_read_all" ReturnType="Collection(SkillsDbModel.sp_skills_read_all_Result)" />
+  </EntityContainer>
+  <EntityType Name="Member">
+    <Key>
+      <PropertyRef Name="Member_ID" />
+      <PropertyRef Name="First_Name" />
+      <PropertyRef Name="Last_Name" />
+      <PropertyRef Name="User_Name" />
+      <PropertyRef Name="Date_Joined" />
+      <PropertyRef Name="Date_Of_Birth" />
+    </Key>
+    <Property Name="Member_ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="First_Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Last_Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="User_Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Date_Joined" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Date_Of_Birth" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Phone_Number" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="skill">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="skill_name" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <ComplexType Name="sp_skill_read_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="skill_name" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_skills_read_all_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="skill_name" Nullable="true" />
+  </ComplexType>
+</Schema>

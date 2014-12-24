@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnitiyFrameWorkMVCKnockoutNinject", "EnitiyFrameWorkMVCKnockoutNinject\EnitiyFrameWorkMVCKnockoutNinject.csproj", "{9EFD9EA5-DC2E-4D28-9B2E-B036305312E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnitiyFrameWorkMVCKnockoutNinject.Tests", "EnitiyFrameWorkMVCKnockoutNinject.Tests\EnitiyFrameWorkMVCKnockoutNinject.Tests.csproj", "{4289C7EE-8F72-4559-96A2-A941F9BCA4A6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9EFD9EA5-DC2E-4D28-9B2E-B036305312E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EFD9EA5-DC2E-4D28-9B2E-B036305312E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EFD9EA5-DC2E-4D28-9B2E-B036305312E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EFD9EA5-DC2E-4D28-9B2E-B036305312E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4289C7EE-8F72-4559-96A2-A941F9BCA4A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4289C7EE-8F72-4559-96A2-A941F9BCA4A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4289C7EE-8F72-4559-96A2-A941F9BCA4A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4289C7EE-8F72-4559-96A2-A941F9BCA4A6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

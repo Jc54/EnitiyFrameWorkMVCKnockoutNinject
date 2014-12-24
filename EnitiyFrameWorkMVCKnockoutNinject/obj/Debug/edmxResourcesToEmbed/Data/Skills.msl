@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SkillsDbModelStoreContainer" CdmEntityContainer="SkillsDbEntities">
+    <EntitySetMapping Name="Members">
+      <EntityTypeMapping TypeName="SkillsDbModel.Member">
+        <MappingFragment StoreEntitySet="Member">
+          <ScalarProperty Name="Member_ID" ColumnName="Member_ID" />
+          <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+          <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+          <ScalarProperty Name="User_Name" ColumnName="User_Name" />
+          <ScalarProperty Name="Date_Joined" ColumnName="Date_Joined" />
+          <ScalarProperty Name="Date_Of_Birth" ColumnName="Date_Of_Birth" />
+          <ScalarProperty Name="Phone_Number" ColumnName="Phone_Number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="skills">
+      <EntityTypeMapping TypeName="SkillsDbModel.skill">
+        <MappingFragment StoreEntitySet="skill">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="skill_name" ColumnName="skill_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_skill_create" FunctionName="SkillsDbModel.Store.sp_skill_create" />
+    <FunctionImportMapping FunctionImportName="sp_skill_delete" FunctionName="SkillsDbModel.Store.sp_skill_delete" />
+    <FunctionImportMapping FunctionImportName="sp_skill_read" FunctionName="SkillsDbModel.Store.sp_skill_read">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SkillsDbModel.sp_skill_read_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="skill_name" ColumnName="skill_name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_skill_update" FunctionName="SkillsDbModel.Store.sp_skill_update" />
+    <FunctionImportMapping FunctionImportName="sp_skills_read_all" FunctionName="SkillsDbModel.Store.sp_skills_read_all">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SkillsDbModel.sp_skills_read_all_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="skill_name" ColumnName="skill_name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,19 @@
+﻿<ul class="list-unstyled" data-bind="foreach: Skills">
+    <li>
+        <input type="hidden" data-bind="value: SkillId" />
+        <span data-bind="text: SkillName" ></span>        
+        <button data-bind="click: $root.EditSkill"  class="editSkill btn">Edit Skill</button>
+        <button data-bind="click: $root.DeleteSkill"  class="editSkill btn">Delete Skill</button>
+    </li>
+</ul>
+<ul class="list-unstyled">
+    <li><button data-bind="click: $root.CreateSkill"  class="editSkill btn">Create Skill</button></li>
+</ul>
+<hr />
+<ul class="list-unstyled">   
+    <li>
+        <input data-bind="value: $root.SkillNameToEdit, visible: IsEdit" />
+        <input type="hidden" data-bind="value: $root.SkillIdToEdit, visible: IsEdit" />
+        <button data-bind="click: $root.SaveSkill, visible: IsEdit">Save Skill</button>
+    </li>
+</ul>

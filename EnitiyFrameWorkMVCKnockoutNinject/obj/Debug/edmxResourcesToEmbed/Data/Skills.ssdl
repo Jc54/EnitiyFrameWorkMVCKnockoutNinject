@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SkillsDbModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="SkillsDbModelStoreContainer">
+    <EntitySet Name="Member" EntityType="SkillsDbModel.Store.Member" store:Type="Tables" store:Schema="dbo" store:Name="Member">
+      <DefiningQuery>SELECT 
+      [Member].[Member_ID] AS [Member_ID], 
+      [Member].[First_Name] AS [First_Name], 
+      [Member].[Last_Name] AS [Last_Name], 
+      [Member].[User_Name] AS [User_Name], 
+      [Member].[Date_Joined] AS [Date_Joined], 
+      [Member].[Date_Of_Birth] AS [Date_Of_Birth], 
+      [Member].[Phone_Number] AS [Phone_Number]
+      FROM [dbo].[Member] AS [Member]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="skill" EntityType="SkillsDbModel.Store.skill" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'SkillsDb.dbo.Member' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="Member">
+    <Key>
+      <PropertyRef Name="Member_ID" />
+      <PropertyRef Name="First_Name" />
+      <PropertyRef Name="Last_Name" />
+      <PropertyRef Name="User_Name" />
+      <PropertyRef Name="Date_Joined" />
+      <PropertyRef Name="Date_Of_Birth" />
+    </Key>
+    <Property Name="Member_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="First_Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Last_Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="User_Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Date_Joined" Type="datetime" Nullable="false" />
+    <Property Name="Date_Of_Birth" Type="datetime" Nullable="false" />
+    <Property Name="Phone_Number" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="skill">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="skill_name" Type="varchar(max)" />
+  </EntityType>
+  <Function Name="sp_skill_create" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="skill_name" Type="varchar(max)" Mode="In" />
+    <Parameter Name="ID" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="sp_skill_delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="skill_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_skill_read" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="skill_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_skill_update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="skill_id" Type="int" Mode="In" />
+    <Parameter Name="skill_name" Type="varchar(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_skills_read_all" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+</Schema>

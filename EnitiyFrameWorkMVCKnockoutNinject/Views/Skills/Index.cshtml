@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_KnockOutLayout.cshtml";
+}
+
+<h2>KnockoutJs, MVC 4 (API), Entity framework, ninject </h2>
+
+Skills:
+@Html.Partial("~/Views/Shared/_skillsTemplate.cshtml")
+
+@Scripts.Render("~/bundles/Knockoutjs")
+
+<script type="text/javascript">
+    $(function () {
+        ko.applyBindings(new ViewModel(new KnockoutRepository()));
+    });
+</script>
